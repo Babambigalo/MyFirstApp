@@ -1,11 +1,14 @@
 package com.example.android.myfirstapp;
 
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -15,17 +18,19 @@ import java.util.ArrayList;
 
 public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ItemCategoryViewHolder> {
 
-
+    private Context context;
+    private ArrayList<Category> categories;
 
 
 
     public static class ItemCategoryViewHolder extends RecyclerView.ViewHolder{
 
-        RecyclerView rv;
-        TextView tvName;
-        TextView tvAddress;
-        TextView tvNumbers;
-        ImageView image;
+
+        private RecyclerView rv;
+        private TextView tvName;
+        private TextView tvAddress;
+        private TextView tvNumbers;
+        private static ImageView image;
 
 
 
@@ -39,9 +44,10 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ItemCa
 
         }
     }
-    ArrayList<Category> categories;
-    public CategoryAdapter(ArrayList<Category> categories){
+
+    public CategoryAdapter(Context context,ArrayList<Category> categories){
         this.categories = categories;
+        this.context = context;
 
     }
 
@@ -56,7 +62,10 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ItemCa
         holder.tvName.setText(categories.get(position).getmName());
         holder.tvAddress.setText(categories.get(position).getmAddress());
         holder.tvNumbers.setText(categories.get(position).getmNumber());
-        holder.image.setImageResource(categories.get(position).getmPhoto());
+
+        //holder.image.setImageDrawable(categories.get(position).);
+        //holder.image.setImageResource(categories.get(position).getmPhoto());
+        Picasso.with(context).load(categories.get(position).getmPhoto()).resize(150,100).into(ItemCategoryViewHolder.image);
     }
 
 
@@ -64,6 +73,6 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ItemCa
 
     @Override
     public int getItemCount() {
-        return 4;
+        return categories.size();
     }
 }

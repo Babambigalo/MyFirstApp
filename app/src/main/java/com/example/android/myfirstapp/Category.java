@@ -8,16 +8,16 @@ public class Category {
     private String mName;
     private String mAddress;
     private String mNumber;
-    private int mPhoto;
+    private String mPhoto;
 
-    public Category(String name,String address,String number,int photo){
+    public Category(String name,String address,String number,String photo){
         mAddress = address;
         mNumber = number;
         mName = name;
         mPhoto = photo;
     }
 
-    public Category(String name,String address,int photo){
+    public Category(String name,String address,String photo){
         mAddress = address;
         mPhoto = photo;
         mName = name;
@@ -25,8 +25,15 @@ public class Category {
     }
 
 
+    public Category(String name,String address){
+        mAddress = address;
+        mName = name;
 
-    public int getmPhoto() {
+    }
+
+
+
+    public String getmPhoto() {
         return mPhoto;
     }
 
@@ -46,9 +53,14 @@ public class Category {
         this.mAddress = mAddress;
     }
 
-    public void setmPhoto(int mPhoto) {
+    public void setmPhoto(String mPhoto) {
         this.mPhoto = mPhoto;
     }
+
+
+
+
+
 
     public void setmName(String mName) {
         this.mName = mName;
